@@ -12,12 +12,12 @@ export default (path: NodePath, data: RandomObject, parentPath: string) => {
   const { name, folder, toImport } = data;
 
   const pathname = resolve(dirname(parentPath), `./${folder}/${name + extname(parentPath)}`);
-  const body = wrap(path, data);
-
-  replaceInOriginalFile(name, path, data);
 
   const nodes: any[] = combineImports(pathname, dirname(pathname), unique(toImport));
+  const body = wrap(path, data);
   nodes.push(body);
+
+  replaceInOriginalFile(name, path, data);
 
   return {
     pathname,
