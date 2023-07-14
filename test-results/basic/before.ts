@@ -1,7 +1,4 @@
-import Slimfast from '.';
-
-const code = `
-import { registerApp } from 'app/dim-api/register-app';
+export default `import { registerApp } from 'app/dim-api/register-app';
 import React, { useState } from 'react';
 
 const createAppUrl = 'https://www.bungie.net/en/Application/Create';
@@ -186,22 +183,3 @@ export default function Developer() {
     </div>
   );
 }`;
-
-describe('Slimfast Node', () => {
-  test('It modularises', async () => {
-    const files: [string, string][] = [[`/path`, code]];
-    const opts: SlimFastOpts = {
-      files,
-      src: '/',
-      extensions: [],
-      ignoredFiles: [],
-      ignoredImports: [],
-      packageContents: {},
-    };
-
-    const slimFast = new Slimfast(opts);
-    await slimFast.run();
-    const file = slimFast.refactored.extractFiles()[0];
-    expect(file.code).toBe('');
-  }, 30000);
-});

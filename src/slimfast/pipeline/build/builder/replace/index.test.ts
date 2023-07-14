@@ -1,8 +1,8 @@
 import traverse, { NodePath } from '@babel/traverse';
 import { Codebase, FileContainer } from '@modular-rocks/workspace-node';
-import generate from '.';
-import parser from '../../../../../visitors/lib/parser';
-import extractIdentifiers from '../../../../../visitors/lib/extract-identifiers';
+import replace from '.';
+import parser from '../../../../visitors/lib/parser';
+import extractIdentifiers from '../../../../visitors/lib/extract-identifiers';
 
 const files: [string, string][] = [[`/path`, '']];
 const opts: SlimFastOpts = {
@@ -24,7 +24,7 @@ describe('Generate JSX', () => {
       };
     `;
 
-    let rootPath: NodePath | null = null;
+    let rootPath: any = null;
     const ast = parser(code);
 
     traverse(ast, {
@@ -37,10 +37,9 @@ describe('Generate JSX', () => {
     if (rootPath !== null) {
       const data = {};
       extractIdentifiers(rootPath, data);
-      const el = generate(rootPath, data);
-      expect(file.astToCode(el)).toBe(`export default function() {
-    return "Hello World!";
-}`);
+      expect(rootPath.isJSXElement()).toBe(false);
+      const el = replace('myFunction', rootPath, data, opts);
+      expect(file.astToCode(el)).toBe(`myFunction()`);
     }
   });
   test('', async () => {
@@ -51,7 +50,7 @@ describe('Generate JSX', () => {
       };
     `;
 
-    let rootPath: NodePath | null = null;
+    let rootPath: any = null;
     const ast = parser(code);
 
     traverse(ast, {
@@ -64,10 +63,68 @@ describe('Generate JSX', () => {
     if (rootPath !== null) {
       const data = {};
       extractIdentifiers(rootPath, data);
-      const el = generate(rootPath, data);
-      expect(file.astToCode(el)).toBe(`export default function(name) {
-    return name + name;
-}`);
+      expect(rootPath.isJSXElement()).toBe(false);
+      const el = replace('myFunction', rootPath, data, opts);
+      expect(file.astToCode(el)).toBe(`myFunction(name)`);
+    }
+  });
+
+  test('', async () => {
+    const code = `
+      () => {
+        return (
+          <div>
+            <h1>Hello World!</h1>
+          </div>
+        )
+      }
+    `;
+    let rootPath: any = null;
+    const ast = parser(code);
+
+    traverse(ast, {
+      JSXElement(path) {
+        rootPath = path;
+        path.stop();
+      },
+    });
+
+    if (rootPath !== null) {
+      const data = {};
+      extractIdentifiers(rootPath, data);
+      expect(rootPath.isJSXElement()).toBe(true);
+      const el = replace('MyComponent', rootPath, data, opts);
+      expect(file.astToCode(el)).toBe(`<MyComponent />`);
+    }
+  });
+  test('', async () => {
+    const code = `
+      const name = 'Ronald Mcdonald';
+      () => {
+        return (
+          <div>
+            <h1>{name}!</h1>
+          </div>
+        )
+      }
+    `;
+
+    let rootPath: any = null;
+    const ast = parser(code);
+
+    traverse(ast, {
+      JSXElement(path) {
+        rootPath = path;
+        path.stop();
+      },
+    });
+
+    if (rootPath) {
+      const data = {};
+      extractIdentifiers(rootPath, data);
+      expect(rootPath.isJSXElement()).toBe(true);
+      const el = replace('MyComponent', rootPath, data, opts);
+      expect(file.astToCode(el)).toBe(`<MyComponent name={name} />`);
     }
   });
   // bug!

@@ -17,9 +17,20 @@ const opts: SlimFastOpts = {
 const codebase = new Codebase(opts);
 const file = new FileContainer(`/path`, '', codebase);
 
+const ast = parser('4 * 5');
+let nodePath: NodePath | null = null;
+
+traverse(ast, {
+  enter(path) {
+    nodePath = path;
+  },
+});
+
 describe('Combine imports', () => {
   test('It modularises', async () => {
-    const statement = importStatement('module', '/path/to/folder', '/path/to');
-    expect(file.print(statement)).toBe('import module from "./to/folder";');
+    if (nodePath) {
+      const statement = importStatement('module', '/path/to/folder', '/path/to', nodePath);
+      expect(file.print(statement)).toBe('import module from "./to/folder";');
+    }
   });
 });
