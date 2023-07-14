@@ -1407,35 +1407,35 @@
     "@babel/traverse" "^7.22.5"
     "@modular-rocks/traverse-files" "0.2.5-development"
 
-"@modular-rocks/slimfast@0.0.6-development":
-  version "0.0.6-development"
-  resolved "https://registry.yarnpkg.com/@modular-rocks/slimfast/-/slimfast-0.0.6-development.tgz#4f1d22069b102cfa706b1a04452fadd6ca684ae8"
-  integrity sha512-7Qlo+ehTcC35XiVJY1pTcl/0wqqWVbLdwHGZWyqTrW8u0w2XmbvsQbDwLirLhgM89xOXKERWrJl1xdyfabNH0g==
+"@modular-rocks/slimfast@0.1.1-development":
+  version "0.1.1-development"
+  resolved "https://registry.yarnpkg.com/@modular-rocks/slimfast/-/slimfast-0.1.1-development.tgz#18cc0d619a237eeaf7bdd8f0197939d4fce3565f"
+  integrity sha512-DGDtrCfVOFCOGoapfd8uMq1ZHGu1r11oUf+pcjrk32Q6tLWKLfEZKZTqPA1j1SsLU7doVTH21XA4ZGCzS+JHFw==
   dependencies:
-    "@modular-rocks/workspace" "0.1.0-development"
+    "@modular-rocks/workspace" "0.1.1-development"
 
 "@modular-rocks/traverse-files@0.2.5-development":
   version "0.2.5-development"
   resolved "https://registry.yarnpkg.com/@modular-rocks/traverse-files/-/traverse-files-0.2.5-development.tgz#586103cb9c0fed11ffba90db63a1698f290dfaec"
   integrity sha512-2/o4mv3bMdhumvvbU1wp1kJ4NBI8DkTwkOR01AMJ6V4RoH8wLPKH8v7pr8mUkcNB4qWmLV+KYzzpzR6hSuk4HA==
 
-"@modular-rocks/workspace-node@0.0.5-development":
-  version "0.0.5-development"
-  resolved "https://registry.yarnpkg.com/@modular-rocks/workspace-node/-/workspace-node-0.0.5-development.tgz#6effbac089280cba719c1eef9e759ab8d60e183e"
-  integrity sha512-5uYBnzQvoPuecfe2bfvYdqC9G1mv52pvYC5U9t0PLKW388WZ11YRDcJGiP0X4Ac2Tq3UxvVwVdm0xUr7T3GV8w==
+"@modular-rocks/workspace-node@0.1.1-development":
+  version "0.1.1-development"
+  resolved "https://registry.yarnpkg.com/@modular-rocks/workspace-node/-/workspace-node-0.1.1-development.tgz#28c3e75fa0f5b91c0f9e0b237b13a96302105b2e"
+  integrity sha512-/Mk5vd0jc9AzcUNAPkL3tyTr+lmcBmEXDNsDSp96fFdWKjEwjkaYKwfSzIoL0iXizlKinJv8v8OOPvbxLIBx6A==
   dependencies:
     "@babel/parser" "7.22.7"
     "@babel/traverse" "7.22.8"
     "@babel/types" "7.22.5"
     "@modular-rocks/metrics-ts-js" "0.2.3-development"
     "@modular-rocks/traverse-files" "0.2.5-development"
-    "@modular-rocks/workspace" "0.1.0-development"
+    "@modular-rocks/workspace" "0.1.1-development"
     recast "0.23.2"
 
-"@modular-rocks/workspace@0.1.0-development":
-  version "0.1.0-development"
-  resolved "https://registry.yarnpkg.com/@modular-rocks/workspace/-/workspace-0.1.0-development.tgz#954537cae6bb351fea105fe188c602038b751cb0"
-  integrity sha512-Q3PWAh0rypVyWwe+tWVbf2yvQGazQwm2msUeGiajyL3QVBtq0DzVpQpiZfUn2W14I7bGtXfwHfly1WWtqeikFg==
+"@modular-rocks/workspace@0.1.1-development":
+  version "0.1.1-development"
+  resolved "https://registry.yarnpkg.com/@modular-rocks/workspace/-/workspace-0.1.1-development.tgz#32493a7b8519643494049bceaea47cb575d37f5f"
+  integrity sha512-bymxiAE+XdhQEa41yhqgoPFazYvvRxRtAGXOcRiIBGhlxWO/8t+pi1tY27fnHtbaMifuecaUBDKf5ngmtzrkQQ==
   dependencies:
     "@modular-rocks/traverse-files" "0.2.5-development"
 
