@@ -97,8 +97,8 @@ interface SlimFastOpts extends WorkspaceOpts {
   visitors?: any[];
   namer?: Function;
   builder?: Function;
-  jsxWrapper?: Function;
-  functionWrapper?: Function;
+  jsxReplacer?: Function;
+  functionReplacer?: Function;
   jsxGenerator?: Function;
   functionGenerator?: Function;
   wrap?: Function;

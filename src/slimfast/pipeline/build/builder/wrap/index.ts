@@ -5,6 +5,6 @@ import generateNormalFunction from './normal-function';
 
 export default (path: NodePath, data: RandomObject, options: SlimFastOpts) => {
   return path.isJSXElement()
-    ? (options.jsxWrapper || generateJsxFunction)(path, data)
-    : (options.functionWrapper || generateNormalFunction)(path, data);
+    ? (options.jsxGenerator || generateJsxFunction)(path, data)
+    : (options.functionGenerator || generateNormalFunction)(path, data);
 };
