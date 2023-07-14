@@ -1,6 +1,6 @@
 {
   "name": "@modular-rocks/slimfast-node",
-  "version": "0.0.1-development",
+  "version": "0.0.2-development",
   "description": "Slimfast puts your code base on a diet with automatic modularisation. This is Slimfast for NodeJS",
   "main": "./dist/index.js",
   "exports": {
@@ -60,9 +60,9 @@
     "@babel/parser": "7.22.7",
     "@babel/traverse": "7.22.8",
     "@babel/types": "7.22.5",
-    "@modular-rocks/slimfast": "0.0.5-development",
-    "@modular-rocks/traverse-files": "0.2.4-development",
-    "@modular-rocks/workspace-node": "0.0.4-development",
+    "@modular-rocks/slimfast": "0.0.6-development",
+    "@modular-rocks/traverse-files": "0.2.5-development",
+    "@modular-rocks/workspace-node": "0.0.5-development",
     "array-unique": "0.3.2"
   }
 }
