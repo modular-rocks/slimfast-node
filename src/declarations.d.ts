@@ -13,6 +13,21 @@ interface Options {
   custom?: Custom;
 }
 
+type Extract = [RandomObject, Data];
+
+interface Data {
+  [property: string]: string;
+}
+
+type Namer = (path: RandomObject, data: RandomObject, options: Option) => void;
+type Builder = (path: RandomObject, data: RandomObject, file: FileContainerType) => ProvisionalFile;
+
+interface ProvisionalFile {
+  pathname: string;
+  ast: RandomObject;
+  import: RandomObject;
+}
+
 interface WorkspaceOpts extends Options {
   files?: [string, string][];
 }
@@ -82,6 +97,12 @@ interface SlimFastOpts extends WorkspaceOpts {
   visitors?: any[];
   namer?: Function;
   builder?: Function;
+  jsxWrapper?: Function;
+  functionWrapper?: Function;
+  jsxGenerator?: Function;
+  functionGenerator?: Function;
+  wrap?: Function;
+  replace?: Function;
 }
 
 interface Custom {

@@ -1,8 +1,8 @@
 import traverse, { NodePath } from '@babel/traverse';
 import { Codebase, FileContainer } from '@modular-rocks/workspace-node';
-import generate from '.';
-import parser from '../../../../../visitors/lib/parser';
-import extractIdentifiers from '../../../../../visitors/lib/extract-identifiers';
+import wrap from '.';
+import parser from '../../../../visitors/lib/parser';
+import extractIdentifiers from '../../../../visitors/lib/extract-identifiers';
 
 const files: [string, string][] = [[`/path`, '']];
 const opts: SlimFastOpts = {
@@ -17,6 +17,59 @@ const codebase = new Codebase(opts);
 const file = new FileContainer(`/path`, '', codebase);
 
 describe('Generate JSX', () => {
+  test('', async () => {
+    const code = `
+      () => {
+      return "Hello World!";
+    };
+  `;
+
+    let rootPath: NodePath | null = null;
+    const ast = parser(code);
+
+    traverse(ast, {
+      StringLiteral(path) {
+        rootPath = path;
+        path.stop();
+      },
+    });
+
+    if (rootPath !== null) {
+      const data = {};
+      extractIdentifiers(rootPath, data);
+      const el = wrap(rootPath, data, opts);
+      expect(file.astToCode(el)).toBe(`export default function() {
+    return "Hello World!";
+}`);
+    }
+  });
+  test('', async () => {
+    const code = `
+      const name = 'Ronald Mcdonald';
+      () => {
+        return name + name;
+      };
+    `;
+
+    let rootPath: NodePath | null = null;
+    const ast = parser(code);
+
+    traverse(ast, {
+      BinaryExpression(path) {
+        rootPath = path;
+        path.stop();
+      },
+    });
+
+    if (rootPath !== null) {
+      const data = {};
+      extractIdentifiers(rootPath, data);
+      const el = wrap(rootPath, data, opts);
+      expect(file.astToCode(el)).toBe(`export default function(name) {
+    return name + name;
+}`);
+    }
+  });
   test('', async () => {
     const code = `
       () => {
@@ -41,7 +94,7 @@ describe('Generate JSX', () => {
     if (rootPath !== null) {
       const data = {};
       extractIdentifiers(rootPath, data);
-      const el = generate(rootPath, data);
+      const el = wrap(rootPath, data, opts);
       expect(file.astToCode(el)).toBe(`export default function(props) {
     return (
         <div>
@@ -51,6 +104,7 @@ describe('Generate JSX', () => {
 }`);
     }
   });
+
   test('', async () => {
     const code = `
       const name = 'Ronald Mcdonald';
@@ -76,12 +130,12 @@ describe('Generate JSX', () => {
     if (rootPath !== null) {
       const data = {};
       extractIdentifiers(rootPath, data);
-      const el = generate(rootPath, data);
+      const el = wrap(rootPath, data, opts);
       expect(file.astToCode(el)).toBe(`export default function(props) {
     const {
         name
     } = props;
-    
+
     return (
         <div>
             <h1>{name}!</h1>
