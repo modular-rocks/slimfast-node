@@ -1,7 +1,7 @@
 import traverse, { NodePath, Node } from '@babel/traverse';
 
-import rejectParentsWithTypes from '../lib/reject-parents-with-types';
-import notInExtracted from '../lib/not-in-extracted';
+import rejectParentsWithTypes from '../utils/reject-parents-with-types';
+import notInExtracted from '../utils/not-in-extracted';
 
 interface Data {
   [property: string]: any;

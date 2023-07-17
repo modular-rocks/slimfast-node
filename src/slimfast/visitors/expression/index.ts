@@ -1,16 +1,14 @@
-import { NodePath } from '@babel/traverse';
-
 import Visitor from '../visitor';
 
-import tooSmall from '../lib/contraints/too-small';
-import identifiersNotInRange from '../lib/contraints/identifiers-not-within-range';
-import hasReturnStatement from '../lib/contraints/has-return-statement';
-import hasAssignmentExpression from '../lib/contraints/has-assignment-expression';
-import hasVariableDeclarations from '../lib/contraints/contains-identifiers-in-other-scopes';
-import hasVariableDeclarator from '../lib/contraints/has-variable-declarator';
-import hasBlocklistedIdentifiers from '../lib/contraints/has-blocklisted-identifiers';
-import shouldIgnore from '../lib/contraints/should-ignore';
-import removesTooMuch from '../lib/contraints/removes-too-much';
+import tooSmall from '../utils/contraints/too-small';
+import identifiersNotInRange from '../utils/contraints/identifiers-not-within-range';
+import hasReturnStatement from '../utils/contraints/has-return-statement';
+import hasAssignmentExpression from '../utils/contraints/has-assignment-expression';
+import hasVariableDeclarations from '../utils/contraints/contains-identifiers-in-other-scopes';
+import hasVariableDeclarator from '../utils/contraints/has-variable-declarator';
+import hasBlocklistedIdentifiers from '../utils/contraints/has-blocklisted-identifiers';
+import shouldIgnore from '../utils/contraints/should-ignore';
+import removesTooMuch from '../utils/contraints/removes-too-much';
 
 export default class ExpressionVisitor extends Visitor {
   constraints(): Function[] {

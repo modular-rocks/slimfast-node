@@ -1,6 +1,6 @@
 {
   "name": "@modular-rocks/slimfast-node",
-  "version": "0.1.2-development",
+  "version": "0.1.3-development",
   "description": "Slimfast puts your code base on a diet with automatic modularisation. This is Slimfast for NodeJS",
   "main": "./dist/index.js",
   "exports": {

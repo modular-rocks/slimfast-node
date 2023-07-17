@@ -3,8 +3,8 @@ import { program } from '@babel/types';
 import traverse, { NodePath } from '@babel/traverse';
 import { Codebase, FileContainer } from '@modular-rocks/workspace-node';
 import combineImports from '.';
-import parser from '../../../../visitors/lib/parser';
-import extractIdentifiers from '../../../../visitors/lib/extract-identifiers';
+import parser from '../../../../visitors/utils/parser';
+import extractIdentifiers from '../../../../visitors/utils/extract-identifiers';
 
 const files: [string, string][] = [[`/path`, '']];
 const opts: SlimFastOpts = {
