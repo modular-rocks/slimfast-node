@@ -1,6 +1,6 @@
 import { NodePath } from '@babel/traverse';
 import Visitor from '.';
-import parser from '../lib/parser';
+import parser from '../utils/parser';
 
 const str = JSON.stringify;
 

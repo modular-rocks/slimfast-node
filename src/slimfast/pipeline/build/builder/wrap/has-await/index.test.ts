@@ -3,7 +3,7 @@ import { program } from '@babel/types';
 import traverse, { NodePath } from '@babel/traverse';
 import { Codebase, FileContainer } from '@modular-rocks/workspace-node';
 import hasAwait from '.';
-import parser from '../../../../../visitors/lib/parser';
+import parser from '../../../../../visitors/utils/parser';
 
 const files: [string, string][] = [[`/path`, '']];
 const opts: SlimFastOpts = {
